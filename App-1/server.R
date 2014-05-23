@@ -12,7 +12,7 @@ for(i in 1:17){
 # Scree plot: 
 cl1 <- kmodes(PR3q, 1)
 cl2 <- kmodes(PR3q, 2)
-cl3 <- kmodes(PR3q, 3)
+cl3 <- kmodes(PR3q, 3) # Used from scree decision
 cl4 <- kmodes(PR3q, 4)
 cl5 <- kmodes(PR3q, 5)
 cl6 <- kmodes(PR3q, 6)
@@ -39,6 +39,12 @@ for(i in 1:435){
 # Multi dimensional scaling
 cmd=cmdscale(mat,k=2)
 qplot(cmd[,1],cmd[,2],colour=as.factor(cl3$cluster))
+
+
+#Summary Stats
+PR3q$cluster=as.factor(cl3$cluster)
+PR3q %.% group_by(cluster) %.% summarise(n())
+table(PR3q$cluster,PR3q$q1)
 
 shinyServer(function(input, output) {
   #sel <- reactive(quote({input$checkGroup}),quoted=TRUE)
