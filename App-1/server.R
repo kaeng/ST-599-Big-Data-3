@@ -23,7 +23,7 @@ plot(1:6,x)
 #plot(jitter(PR3q[,1]),jitter(PR3q[,2]), col = cl$cluster,pch=cl$cluster)
 #points(cl$modes, col = 1:17, pch = 8)
 
-# Make dissimilaries matrix (SLOW)
+# Make dissimilaries matrix (SLOW), saved as file dismat
 mat=matrix(rep(0,435*435),nrow=435,ncol=435)
 count=0
 for(i in 1:435){
@@ -38,7 +38,7 @@ for(i in 1:435){
 
 # Multi dimensional scaling
 cmd=cmdscale(mat,k=2)
-plot(cmd[,1],cmd[,2],col=cl3$cluster)
+qplot(cmd[,1],cmd[,2],colour=as.factor(cl3$cluster))
 
 shinyServer(function(input, output) {
   #sel <- reactive(quote({input$checkGroup}),quoted=TRUE)
