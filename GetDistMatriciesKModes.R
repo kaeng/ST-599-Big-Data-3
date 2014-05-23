@@ -90,3 +90,11 @@ for (q in 1:17){
 
 
 props1;props2;props3
+
+######################################
+# Exporting proportions as csv files
+######################################
+
+write.table(props1,"KModesCluster1Props.csv",sep=",",quote=FALSE,row.names=FALSE)
+write.table(props2,"KModesCluster2Props.csv",sep=",",quote=FALSE,row.names=FALSE)
+write.table(props3,"KModesCluster3Props.csv",sep=",",quote=FALSE,row.names=FALSE)

@@ -50,3 +50,12 @@ for (q in 1:17){
 
 
 props1;props2;props3
+
+
+######################################
+# Exporting proportions as csv files
+######################################
+
+write.table(props1,"JMPCluster1Props.csv",sep=",",quote=FALSE,row.names=FALSE)
+write.table(props2,"JMPCluster2Props.csv",sep=",",quote=FALSE,row.names=FALSE)
+write.table(props3,"JMPCluster3Props.csv",sep=",",quote=FALSE,row.names=FALSE)
