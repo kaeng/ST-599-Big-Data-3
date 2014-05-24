@@ -98,3 +98,102 @@ props1;props2;props3
 write.table(props1,"KModesCluster1Props.csv",sep=",",quote=FALSE,row.names=FALSE)
 write.table(props2,"KModesCluster2Props.csv",sep=",",quote=FALSE,row.names=FALSE)
 write.table(props3,"KModesCluster3Props.csv",sep=",",quote=FALSE,row.names=FALSE)
+
+
+
+################################
+# Proportion heat maps
+################################
+library(ggplot2)
+library(ggvis)
+
+# load proportions if necessary
+# props1 <- read.csv("KModesCluster1Props.csv",header=TRUE)
+# props2 <- read.csv("KModesCluster2Props.csv",header=TRUE)
+# props3 <- read.csv("KModesCluster3Props.csv",header=TRUE)
+
+
+# ======= Heat Map for Cluster 1 ==========#
+
+# reformat dataframe of proportions for plotting
+dataprops1 <- as.data.frame(cbind(c(props1[,1],props1[,2],props1[,3]),
+                    rep(c("Yea","Nea","?"),each=17),
+                    rep(paste("Key Vote",seq(1,17,1)),times=3)),stringsAsFactors=F)
+
+colnames(dataprops1) <- c("Proportion","Outcome","Vote")
+
+dataprops1$Proportion <- as.numeric(dataprops1$Proportion)
+
+dataprops1$Vote <- factor(dataprops1$Vote,levels=paste("Key Vote",seq(17,1,-1)),
+                             labels=rev(c("Party","Infants","Water","Budget","Physician",
+                                      "El Salvador","Religion","Satellite",
+                                      "Nicaragua","Missile","Immigration","Synfuels",
+                                      "Education","Superfund","Crime",
+                                      "Duty-Free","Exports")))
+
+dataprops1$Outcome <- factor(dataprops1$Outcome,levels=c("Yea","Nea","?"),
+                     labels=c("Yea","Nea","?"))
+
+theme_set(theme_grey(base_size=18))
+ggplot(dataprops1, aes(Outcome, Vote)) +
+  geom_tile(aes(fill = Proportion),colour = "white") +
+  scale_fill_gradient(low = "white",high = "steelblue") +
+  ggtitle(paste("Cluster 1 Size =",clustsize[1])) + xlab("") + ylab("")
+
+
+
+# ======= Heat Map for Cluster 2 ==========#
+
+# reformat dataframe of proportions for plotting
+dataprops2 <- as.data.frame(cbind(c(props2[,1],props2[,2],props2[,3]),
+                                  rep(c("Yea","Nea","?"),each=17),
+                                  rep(paste("Key Vote",seq(1,17,1)),times=3)),stringsAsFactors=F)
+
+colnames(dataprops2) <- c("Proportion","Outcome","Vote")
+
+dataprops2$Proportion <- as.numeric(dataprops2$Proportion)
+
+dataprops2$Vote <- factor(dataprops2$Vote,levels=paste("Key Vote",seq(17,1,-1)),
+                          labels=rev(c("Party","Infants","Water","Budget","Physician",
+                                       "El Salvador","Religion","Satellite",
+                                       "Nicaragua","Missile","Immigration","Synfuels",
+                                       "Education","Superfund","Crime",
+                                       "Duty-Free","Exports")))
+
+dataprops2$Outcome <- factor(dataprops2$Outcome,levels=c("Yea","Nea","?"),
+                             labels=c("Yea","Nea","?"))
+
+theme_set(theme_grey(base_size=18))
+ggplot(dataprops2, aes(Outcome, Vote)) +
+  geom_tile(aes(fill = Proportion),colour = "white") +
+  scale_fill_gradient(low = "white",high = "steelblue") +
+  ggtitle(paste("Cluster 2 Size =",clustsize[2])) + xlab("") + ylab("")
+
+
+# ======= Heat Map for Cluster 3 ==========#
+
+# reformat dataframe of proportions for plotting
+dataprops3 <- as.data.frame(cbind(c(props3[,1],props3[,2],props3[,3]),
+                                  rep(c("Yea","Nea","?"),each=17),
+                                  rep(paste("Key Vote",seq(1,17,1)),times=3)),stringsAsFactors=F)
+
+colnames(dataprops3) <- c("Proportion","Outcome","Vote")
+
+dataprops3$Proportion <- as.numeric(dataprops3$Proportion)
+
+dataprops3$Vote <- factor(dataprops3$Vote,levels=paste("Key Vote",seq(17,1,-1)),
+                          labels=rev(c("Party","Infants","Water","Budget","Physician",
+                                       "El Salvador","Religion","Satellite",
+                                       "Nicaragua","Missile","Immigration","Synfuels",
+                                       "Education","Superfund","Crime",
+                                       "Duty-Free","Exports")))
+
+dataprops3$Outcome <- factor(dataprops3$Outcome,levels=c("Yea","Nea","?"),
+                             labels=c("Yea","Nea","?"))
+
+theme_set(theme_grey(base_size=18))
+ggplot(dataprops3, aes(Outcome, Vote)) +
+  geom_tile(aes(fill = Proportion),colour = "white") +
+  scale_fill_gradient(low = "white",high = "steelblue") +
+  ggtitle(paste("Cluster 3 Size =",clustsize[3])) + xlab("") + ylab("")
+
