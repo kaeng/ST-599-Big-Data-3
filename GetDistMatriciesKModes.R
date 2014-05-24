@@ -134,12 +134,14 @@ dataprops1$Vote <- factor(dataprops1$Vote,levels=paste("Key Vote",seq(17,1,-1)),
 dataprops1$Outcome <- factor(dataprops1$Outcome,levels=c("Yea","Nea","?"),
                      labels=c("Yea","Nea","?"))
 
-theme_set(theme_grey(base_size=18))
+pdf("Cluster1Proportions.pdf",height=8.5,width=11)
+theme_set(theme_grey(base_size=20))
 ggplot(dataprops1, aes(Outcome, Vote)) +
   geom_tile(aes(fill = Proportion),colour = "white") +
   scale_fill_gradient(low = "white",high = "steelblue") +
-  ggtitle(paste("Cluster 1 Size =",clustsize[1])) + xlab("") + ylab("")
-
+  ggtitle(paste("Cluster 1 Size =",clustsize[1])) + xlab("") + ylab("") +
+  geom_text(data=dataprops1, mapping=aes(x=Outcome, y=Vote, label=round(Proportion,3)),size=6)
+dev.off()
 
 
 # ======= Heat Map for Cluster 2 ==========#
@@ -163,12 +165,14 @@ dataprops2$Vote <- factor(dataprops2$Vote,levels=paste("Key Vote",seq(17,1,-1)),
 dataprops2$Outcome <- factor(dataprops2$Outcome,levels=c("Yea","Nea","?"),
                              labels=c("Yea","Nea","?"))
 
-theme_set(theme_grey(base_size=18))
+pdf("Cluster2Proportions.pdf",height=8.5,width=11)
+theme_set(theme_grey(base_size=20))
 ggplot(dataprops2, aes(Outcome, Vote)) +
   geom_tile(aes(fill = Proportion),colour = "white") +
   scale_fill_gradient(low = "white",high = "steelblue") +
-  ggtitle(paste("Cluster 2 Size =",clustsize[2])) + xlab("") + ylab("")
-
+  ggtitle(paste("Cluster 2 Size =",clustsize[2])) + xlab("") + ylab("") +
+  geom_text(data=dataprops2, mapping=aes(x=Outcome, y=Vote, label=round(Proportion,3)),size=6)
+dev.off()
 
 # ======= Heat Map for Cluster 3 ==========#
 
@@ -191,9 +195,11 @@ dataprops3$Vote <- factor(dataprops3$Vote,levels=paste("Key Vote",seq(17,1,-1)),
 dataprops3$Outcome <- factor(dataprops3$Outcome,levels=c("Yea","Nea","?"),
                              labels=c("Yea","Nea","?"))
 
-theme_set(theme_grey(base_size=18))
+pdf("Cluster3Proportions.pdf",height=8.5,width=11)
+theme_set(theme_grey(base_size=20))
 ggplot(dataprops3, aes(Outcome, Vote)) +
   geom_tile(aes(fill = Proportion),colour = "white") +
   scale_fill_gradient(low = "white",high = "steelblue") +
-  ggtitle(paste("Cluster 3 Size =",clustsize[3])) + xlab("") + ylab("")
-
+  ggtitle(paste("Cluster 3 Size =",clustsize[3])) + xlab("") + ylab("") +
+  geom_text(data=dataprops3, mapping=aes(x=Outcome, y=Vote, label=round(Proportion,3)),size=6)
+dev.off()
